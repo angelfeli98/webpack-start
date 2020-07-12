@@ -9,7 +9,7 @@ module.exports = {
     entry: './src/index.ts',
     mode: 'production',
     resolve : {
-        extensions: ['.ts', 'js', '.json']
+        extensions: ['.js', 'ts', '.json']
     },
     optimization: {
         minimizer: [ new OptimizeCssAssetsWebpackPlugin() ]
@@ -20,8 +20,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                use: 'ts-loader',
+                test: /\.js$/,
+                use: 'js-loader',
                 exclude: /node_modules/,
                 //use: {
                 //    loader: 'babel-loader',
