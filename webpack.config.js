@@ -1,13 +1,13 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssStractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin'); 
- 
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
     entry: './src/index.ts',
     mode: 'development',
     resolve: {
-        extensions: ['.ts', '.js', '.json']
+        extensions: ['.js', '.ts', '.json']
     },
     optimization: {
         minimizer: [ new OptimizeCssAssetsWebpackPlugin() ]
@@ -15,22 +15,22 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                use: 'ts-loader',
+                test: /\.js$/,
+                use: 'js-loader',
                 exclude: /node_modules/,
-                //use: {
-                //    loader: 'babel-loader',
-                //    options: {
-                //      presets: ['@babel/preset-env'],
-                //      plugins: [
-                //          ["@babel/plugin-proposal-class-properties"],
-                //          ["@babel/plugin-transform-async-to-generator"],
-                //          ["@babel/plugin-transform-runtime"],
-                //          ["@babel/plugin-proposal-private-methods"],
-                //          ["@babel/plugin-proposal-private-property-in-object"]
-                //        ]
-                //    }
-                //  }
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['@babel/preset-env'],
+                      plugins: [
+                          ["@babel/plugin-proposal-class-properties"],
+                          ["@babel/plugin-transform-async-to-generator"],
+                          ["@babel/plugin-transform-runtime"],
+                          ["@babel/plugin-proposal-private-methods"],
+                          ["@babel/plugin-proposal-private-property-in-object"]
+                        ]
+                    }
+                  }
             },
             {
                test:/\.css$/,
